@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vídeo do Microsoft Stream</title>
+    <title>Vídeo do OneDrive</title>
     <style>
         body {
             margin: 0;
@@ -36,7 +36,7 @@
 </head>
 <body>
     <button id="fullscreen-button" onclick="toggleFullscreen()">Entrar em Tela Cheia</button>
-    <iframe id="stream-video" src="https://web.microsoftstream.com/embed/video/SUA_CHAVE?autoplay=true&loop=true" allowfullscreen></iframe>
+    <iframe id="video-iframe" src="https://gertecsao-my.sharepoint.com/personal/calvin_nascimento_gertec_com_br/_layouts/15/embed.aspx?UniqueId=4e55d0be-29a0-4b97-95b8-ee4289ece599&embed=%7B%22af%22%3Atrue%2C%22ust%22%3Atrue%7D&referrer=StreamWebApp&referrerScenario=EmbedDialog.Create" frameborder="0" allowfullscreen></iframe>
     <script>
         function toggleFullscreen() {
             const iframe = document.querySelector('iframe');
@@ -49,13 +49,15 @@
             }
         }
 
-        // Tenta configurar o loop (depende do suporte do Stream)
-        const iframe = document.getElementById('stream-video');
+        // Workaround para tentar forçar o loop
+        const iframe = document.getElementById('video-iframe');
         iframe.addEventListener('load', () => {
-            // O Stream Player SDK não está amplamente disponível para contas padrão.
-            // Como workaround, recarregamos o iframe quando o vídeo termina (se detectável).
-            // Nota: Isso pode não funcionar perfeitamente devido a restrições do Stream.
-            console.log('Iframe carregado. Loop não garantido nativamente no Stream.');
+            // Tenta detectar o fim do vídeo (não garantido devido a restrições de CORS)
+            // Como alternativa, recarrega o iframe após um tempo estimado
+            const videoDuration = 300000; // Substitua por duração real do vídeo em milissegundos (ex.: 5 minutos = 300000ms)
+            setInterval(() => {
+                iframe.src = iframe.src; // Recarrega o iframe para reiniciar o vídeo
+            }, videoDuration);
         });
     </script>
 </body>
