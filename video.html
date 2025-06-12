@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vídeo do OneDrive</title>
+    <title>Vídeo do YouTube</title>
     <style>
         body {
             margin: 0;
@@ -15,10 +15,10 @@
             min-height: 100vh;
             background: #000;
         }
-        video {
+        iframe {
             width: 100vw;
             height: 100vh;
-            object-fit: contain;
+            border: none;
         }
         #fullscreen-button {
             position: fixed;
@@ -36,15 +36,12 @@
 </head>
 <body>
     <button id="fullscreen-button" onclick="toggleFullscreen()">Entrar em Tela Cheia</button>
-    <video controls autoplay loop>
-    <iframe src="https://gertecsao-my.sharepoint.com/personal/calvin_nascimento_gertec_com_br/_layouts/15/embed.aspx?UniqueId=4e55d0be-29a0-4b97-95b8-ee4289ece599&embed=%7B%22af%22%3Atrue%2C%22ust%22%3Atrue%7D&referrer=StreamWebApp&referrerScenario=EmbedDialog.Create" width="1280" height="720" frameborder="0" scrolling="no" allowfullscreen title="Institucional_Atualizado_Dez2024.mp4"></iframe>
-        Seu navegador não suporta o elemento de vídeo.
-    </video>
+    <iframe src="https://youtu.be/b1w1GzusDH4" frameborder="0" allowfullscreen></iframe>
     <script>
         function toggleFullscreen() {
-            const video = document.querySelector('video');
-            if (video.requestFullscreen) {
-                video.requestFullscreen().then(() => {
+            const iframe = document.querySelector('iframe');
+            if (iframe.requestFullscreen) {
+                iframe.requestFullscreen().then(() => {
                     document.getElementById('fullscreen-button').style.display = 'none';
                 }).catch(err => {
                     console.log(`Erro ao tentar entrar em tela cheia: ${err.message}`);
