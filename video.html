@@ -15,10 +15,10 @@
             min-height: 100vh;
             background: #000;
         }
-        iframe {
+        video {
             width: 100vw;
             height: 100vh;
-            border: none;
+            object-fit: contain;
         }
         #fullscreen-button {
             position: fixed;
@@ -36,12 +36,15 @@
 </head>
 <body>
     <button id="fullscreen-button" onclick="toggleFullscreen()">Entrar em Tela Cheia</button>
-    <iframe src="https://gertecsao-my.sharepoint.com/:v:/g/personal/calvin_nascimento_gertec_com_br/Eb7QVU6gKZdLlbjuQons5ZkBY77UOTzSILvJq0VUQy23Rg?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=hXT69b" frameborder="0" allowfullscreen></iframe>
+    <video controls autoplay>
+        <source src="https://gertecsao-my.sharepoint.com/personal/calvin_nascimento_gertec_com_br/_layouts/15/download.aspx?UniqueId=Eb7QVU6gKZdLlbjuQons5ZkB11psYkx4g0Nsan-aOoxcJA" type="video/mp4">
+        Seu navegador não suporta o elemento de vídeo.
+    </video>
     <script>
         function toggleFullscreen() {
-            const iframe = document.querySelector('iframe');
-            if (iframe.requestFullscreen) {
-                iframe.requestFullscreen().then(() => {
+            const video = document.querySelector('video');
+            if (video.requestFullscreen) {
+                video.requestFullscreen().then(() => {
                     document.getElementById('fullscreen-button').style.display = 'none';
                 }).catch(err => {
                     console.log(`Erro ao tentar entrar em tela cheia: ${err.message}`);
