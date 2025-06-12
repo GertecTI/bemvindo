@@ -21,5 +21,16 @@
 <body>
     <img src="https://raw.githubusercontent.com/GertecTI/bemvindo/main/apresentacao.png" alt="Slide 1">
     <!-- Adicione mais imagens conforme necessário -->
+    <script>
+        // Ativa o modo de tela cheia automaticamente ao carregar a página
+        document.addEventListener('DOMContentLoaded', () => {
+            const body = document.documentElement;
+            if (body.requestFullscreen) {
+                body.requestFullscreen().catch(err => {
+                    console.log(`Erro ao tentar entrar em tela cheia: ${err.message}`);
+                });
+            }
+        });
+    </script>
 </body>
 </html>
